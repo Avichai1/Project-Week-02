@@ -3,20 +3,20 @@
 password_file=""
 #creating an -f option to specify file path
 while getopts ":f:" option; do
-	case $option in
-		f) password_file=$OPTARG;;
-	esac
+case $option in
+f) password_file=$OPTARG;;
+esac
 done
 #clearing optins in order to keep in process with the script
 shift $((OPTIND - 1))
 #if something is inputed to $password_file then $password will read data from the text file
 if [[ -n $password_file ]];
 then
-	password=`cat $password_file`
+password=`cat $password_file`
 #if something is not inputed to $password_file then $password will be the string that is written in the command line
 elif [[ -n $1 ]];
 then
-	password=$1
+password=$1
 fi
 #evaluating how much chars the password has
 password_length=${#password}
@@ -27,7 +27,7 @@ requirements=(foo bar)
 #Checking if password includes minimum of 10 characters
 if [ $password_length -ge 10 ];
 then
-	requirements[0]="Correct"
+requirements[0]="Correct"
 else
     requirements[0]="Incorrect password syntax. The password
     length must includes minimum of 10 characters"
@@ -35,7 +35,8 @@ fi
 #checkig if the password includes both alphabet and number
 if [[ "$password" == *[a-zA-Z]* && "$password" == *[0-9]* ]]
 then
-	requirements[1]="Correct"   
+requirements[1]="Correct"
+   
 else
     requirements[1]="Incorrect password syntax. The password
     must includes both alphabet and number"
@@ -43,7 +44,7 @@ fi
 #checking if password includes both the small and capital case letters.
 if [[ "$password" == *[A-Z]* ]] && [[ "$password" == *[a-z]* ]];
 then
-	requirements[2]="Correct"
+requirements[2]="Correct"
 else
     requirements[2]="Incorrect password syntax. The password
     must includes both the small and capital case letters"
